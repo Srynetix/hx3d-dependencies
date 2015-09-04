@@ -42,8 +42,10 @@
 // #    include <OpenGL/gl.h>
 #  endif
 #elif defined(_WIN32) || defined(_WIN64)
-#  include <GL/glew.h>
-#  include <GL/wglew.h>
+  #define WIN32_LEAN_AND_MEAN
+  #include <WinDef.h>
+  #include <WinGDI.h>
+  #include <GL/glew.h>
 #elif defined(__ANDROID__)
 #  include <GLES2/gl2.h>
 #else
