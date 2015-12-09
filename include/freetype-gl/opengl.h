@@ -35,12 +35,17 @@
 #define __OPEN_GL_H__
 
 #if defined(__APPLE__)
-#  ifdef GL_ES_VERSION_2_0
-#    include <OpenGLES/ES2/gl.h>
-#  else
-#    include <GL/glew.h>
-// #    include <OpenGL/gl.h>
-#  endif
+
+  #include "TargetConditionals.h"
+
+    #if TARGET_IPHONE_SIMULATOR
+      #include <OpenGLES/ES2/gl.h>
+    #elif TARGET_OS_IPHONE
+      #include <OpenGLES/ES2/gl.h>
+    #elif TARGET_OS_MAC
+      #include <GL/glew.h>
+    #endif
+
 #elif defined(_WIN32) || defined(_WIN64)
   #define WIN32_LEAN_AND_MEAN
   #include <WinDef.h>
